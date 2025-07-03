@@ -1,22 +1,43 @@
-#include<iostream>//example of single inheritance.
+//protected modifier can be accessed only base class and child class
+//but not by main function.
+//class base
+// class child:public base.
+
+#include<iostream>
 using namespace std;
-class base
+class check
 {
-    int rollnum;
+    private:
+    void p1()
+    {
+        cout<<"This is private."<<endl;
+    }
     public:
-    int marks;
-    string name;
+    void p2()
+    {
+        cout<<"This is public."<<endl;
+        p1();
+    }
 };
-class child:public base//inherited publically 
+class child:public check
 {
-    public:
-    string subject;
+    protected:
+    void p3()
+    {
+        cout<<"This is protected class."<<endl;
+    }
 };
 int main()
 {
-    child c1;
-    c1.name="Asmita";
-    c1.marks=90;
-    c1.subject="Maths";
-    cout<<c1.subject<<" "<<c1.name<<" "<<c1.marks<<endl;
+    check c1;
+    // c1.p1();
+    // declared private in class can't be accessed.
+    c1.p2(); //declared public.
+    // c1.p3(); //can't be called from parent class as it has.
+    //no function corresponding to it.
+    child c2;
+    // c2.p3(); declared protected can't be accesed inside main
+    // function.
+    c2.p2();//child class inherited properties of parent.
+    //so this works.
 }
